@@ -127,7 +127,7 @@
 
             $('#tipe-pengguna').on('change', function() {
                 let data = $(this).val();
-                if (data == 'pengelola_provinsi') {
+                if (data == 'pengelola_provinsi' || data == 'pimpinan') {
                     $('.kabupaten').hide();
                     $('#kabupaten').prop('required', false);
                     $('#kabupaten').val(26);

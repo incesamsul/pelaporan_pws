@@ -74,7 +74,7 @@
         </div>
 
 
-        <div class="row">
+        <div class="row" hidden>
             <div class="col-lg-12">
                 <div class="card ">
                     <div class="card-header">
@@ -82,7 +82,7 @@
                     </div>
                     <div class="card-body table-responsive">
                         <table class="table table-striped table-bordered text-nowrap" id="data-table">
-                            <thead>
+                            <thead hidden>
 
                                 <tr align="center">
                                     <th rowspan="2  ">no</th>
@@ -114,7 +114,7 @@
 
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody hidden>
                                 @foreach ($sasaran as $row)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
@@ -127,6 +127,7 @@
                                         <td>{{ $row->bumil_resti }}</td>
                                         <td>{{ $row->bayi_resti }}</td>
 
+
                                         @foreach (getIndikator() as $indikator)
                                             <td>{{ getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_lalu_filtered) }}
                                             </td>
@@ -135,8 +136,8 @@
                                             <td>{{ getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) + getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_lalu_filtered) }}
                                             </td>
                                             @if ($indikator != 'mtbs_berobat')
-                                                <td>{{ (getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100 }}
-                                                    %
+                                                <td>{{ round((getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100, 2) }}
+
                                                 </td>
                                             @endif
                                         @endforeach
@@ -144,12 +145,36 @@
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+
+
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
             </div>
         </div>
 
+        <div class="row">
+
+            @foreach (getIndikator() as $indikator)
+                @if ($indikator != 'mtbs_berobat')
+                    <div class="col-sm-3">
+                        <div class="card">
+                            <div class="card-body text-center bg-primary">
+                                <h1 class="text-white">
+                                    <strong>{{ round((getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100, 2) }}</strong>
+                                </h1>
+                                <p>{{ $indikator }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endif
+            @endforeach
+
+        </div>
 
 
     </section>

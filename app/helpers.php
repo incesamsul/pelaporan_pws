@@ -4,6 +4,7 @@ use App\Models\FavoritModel;
 use App\Models\Indikator;
 use App\Models\KategoriModel;
 use App\Models\LogAktivitasModel;
+use App\Models\Sasaran;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\URL;
@@ -46,6 +47,18 @@ function getSasaranPerIndikator($indikator, $sasaran, $bulan)
 
     $query = Indikator::select($indikator)->where('id_sasaran', $sasaran)->where('bulan', $bulan)->first();
     return $query ? $query->$indikator : 0;
+}
+
+function getSumSasaranPerIndikator($indikator, $sasaran, $bulan)
+{
+
+    $query = Indikator::where('id_sasaran', $sasaran)->where('bulan', $bulan)->sum('k1');
+    return $query;
+}
+
+function getSumSasaran($sasaran)
+{
+    return Sasaran::query()->sum($sasaran);
 }
 
 function getKabupaten($idProvinsi)
