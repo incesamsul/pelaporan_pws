@@ -167,7 +167,7 @@
                                 <h1 class="text-white">
                                     <strong>{{ round((getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100, 2) }}</strong>
                                 </h1>
-                                <p>{{ $indikator }}</p>
+                                <h4 class="text-white">{{ $indikator }}</h4>
                             </div>
                         </div>
                     </div>

@@ -11,21 +11,11 @@
 
                 </div>
 
-                <h3 class="profile-username text-center">Nina Mcintire</h3>
+                <h3 class="profile-username text-center">{{ auth()->user()->name }}</h3>
 
-                <p class="text-muted text-center">Software Engineer</p>
+                <p class="text-muted text-center">{{ auth()->user()->role }}</p>
 
-                <ul class="list-group list-group-unbordered mb-3">
-                    <li class="list-group-item">
-                        <b>Jenis Profile</b> <a class="float-right">General</a>
-                    </li>
-                    <li class="list-group-item">
-                        <b>Tgl Dibuat</b> <a class="float-right">19 maret 2030</a>
-                    </li>
-                    <li class="list-group-item">
-                        <b>Jurusan</b> <a class="float-right">Perkomputeran</a>
-                    </li>
-                </ul>
+
 
                 <a href="" class="btn btn-primary btn-block" data-toggle="modal" data-target="#modal">
                     <i class="fas fa-camera"></i> Ganti Foto Profile
