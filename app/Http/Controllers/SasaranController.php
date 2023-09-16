@@ -42,7 +42,8 @@ class SasaranController extends Controller
             'neonatus_ditangani' => $request->neonatus_ditangani,
             'kby_lengkap' => $request->kby_lengkap,
             'balita_lengkap' => $request->balita_lengkap,
-            'mtbs' => $request->mtbs,
+            'mtbs_berobat' => $request->mtbs_berobat,
+            'mtbs_pelayanan' => $request->mtbs_pelayanan,
         ]);
 
         return redirect()->back()->with('message', 'data psw tersimpan');
@@ -51,10 +52,11 @@ class SasaranController extends Controller
 
     public function report()
     {
-        if (auth()->user()->role == 'pimpinan') {
+        if (auth()->user()->role == 'pimpinan' || auth()->user()->role == 'pengelola_provinsi') {
             $data['sasaran'] = Sasaran::all();
             $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : 0;
             $data['bulan_filtered'] = $bulan;
+            $data['bulan_lalu_filtered'] = $bulan - 1;
             $data['kabupaten'] = Kabupaten::all();
             return view('pages.sasaran.report_all', $data);
         } else {

@@ -138,8 +138,12 @@
                                 <input type="text" class="form-control" id="balita_lengkap" name="balita_lengkap">
                             </div>
                             <div class="form-group">
-                                <label for="mtbs">mtbs</label>
-                                <input type="text" class="form-control" id="mtbs" name="mtbs">
+                                <label for="mtbs_berobat">Mtbs jumlah balita yang berobat ke pkm </label>
+                                <input type="text" class="form-control" id="mtbs_berobat" name="mtbs_berobat">
+                            </div>
+                            <div class="form-group">
+                                <label for="mtbs_pelayanan">Mtbs balita sakit yang mendapatkan pelayanan mtbs</label>
+                                <input type="text" class="form-control" id="mtbs_pelayanan" name="mtbs_pelayanan">
                             </div>
                             <div class="form-group">
                                 <button type="submit" class="btn btn-primary">Simpan</button>
@@ -172,7 +176,8 @@
                                     <th>neonatus di tangani</th>
                                     <th>kby lengkap</th>
                                     <th>balita lengkap</th>
-                                    <th>mtbs</th>
+                                    <th>mtbs berobat</th>
+                                    <th>mtbs pelayanan</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -193,7 +198,8 @@
                                         <td>{{ $row->neonatus_ditangani }}</td>
                                         <td>{{ $row->kby_lengkap }}</td>
                                         <td>{{ $row->balita_lengkap }}</td>
-                                        <td>{{ $row->mtbs }}</td>
+                                        <td>{{ $row->mtbs_berobat }}</td>
+                                        <td>{{ $row->mtbs_pelayanan }}</td>
                                     </tr>
                                 @endforeach
 

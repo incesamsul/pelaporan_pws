@@ -108,7 +108,9 @@
                                         <th>bulan lalu</th>
                                         <th>bulan ini</th>
                                         <th>abs</th>
-                                        <th>%</th>
+                                        @if ($indikator != 'mtbs_berobat')
+                                            <th>%</th>
+                                        @endif
                                     @endforeach
 
                                 </tr>
@@ -127,14 +129,17 @@
                                         <td>{{ $row->bayi_resti }}</td>
 
                                         @foreach (getIndikator() as $indikator)
-                                            <td>--</td>
-                                            <td>{{ getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) }}
+                                            <td>{{ getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_lalu_filtered) }}
                                             </td>
                                             <td>{{ getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) }}
                                             </td>
-                                            <td>{{ (getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100 }}
-                                                %
+                                            <td>{{ getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) + getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_lalu_filtered) }}
                                             </td>
+                                            @if ($indikator != 'mtbs_berobat')
+                                                <td>{{ (getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100 }}
+                                                    %
+                                                </td>
+                                            @endif
                                         @endforeach
 
                                     </tr>

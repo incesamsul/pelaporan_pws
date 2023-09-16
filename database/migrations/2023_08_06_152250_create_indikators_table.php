@@ -32,7 +32,8 @@ class CreateIndikatorsTable extends Migration
             $table->double('neonatus_ditangani');
             $table->double('kby_lengkap');
             $table->double('balita_lengkap');
-            $table->double('mtbs');
+            $table->double('mtbs_berobat');
+            $table->double('mtbs_pelayanan');
             $table->timestamps();
             $table->foreign('id_sasaran')->references('id')->on('sasaran')->onDelete('cascade');
         });

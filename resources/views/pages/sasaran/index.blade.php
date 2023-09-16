@@ -44,11 +44,11 @@
                                 </div>
                                 <div class="form-group">
                                     <label for="bumil_resti">bumil_resti</label>
-                                    <input type="text" class="form-control" id="bumil_resti" name="bumil_resti">
+                                    <input readonly type="text" class="form-control" id="bumil_resti" name="bumil_resti">
                                 </div>
                                 <div class="form-group">
                                     <label for="bayi_resti">bayi_resti</label>
-                                    <input type="text" class="form-control" id="bayi_resti" name="bayi_resti">
+                                    <input readonly type="text" class="form-control" id="bayi_resti" name="bayi_resti">
                                 </div>
                                 <div class="form-group">
                                     <button type="submit" class="btn btn-primary">Simpan</button>
@@ -107,6 +107,19 @@
 @endsection
 @section('script')
     <script>
+        $('#bumil').on('input', function() {
+            let bumilVal = $(this).val();
+            let bumilResti = (20 / 100) * bumilVal;
+            $('#bumil_resti').val(bumilResti);
+        })
+
+        $('#bayi').on('input', function() {
+
+            let bayiVal = $(this).val();
+            let bayiResti = (15 / 100) * bayiVal;
+            $('#bayi_resti').val(bayiResti);
+        })
+
         $('#lisasaran').addClass('active');
     </script>
 @endsection

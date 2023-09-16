@@ -23,6 +23,11 @@
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
+
+<script src="{{ asset('plugins/datatables/datatables.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="{{ asset('plugins/datatables-select/js/dataTables.select.min.js') }}"></script>
+
 <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
 
 </body>

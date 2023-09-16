@@ -30,7 +30,8 @@ function getIndikator()
         'neonatus ditangani',
         'kby lengkap',
         'balita lengkap',
-        'mtbs',
+        'mtbs_berobat',
+        'mtbs_pelayanan',
     ];
 }
 

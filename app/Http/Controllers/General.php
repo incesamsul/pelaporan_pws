@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-
+use App\Models\Kabupaten;
+use App\Models\Sasaran;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Filesystem\Filesystem;
@@ -20,7 +21,12 @@ class General extends Controller
 
     public function dashboard()
     {
-        return view('pages.dashboard.index');
+        $data['sasaran'] = Sasaran::all();
+        $bulan = isset($_GET['bulan']) ? $_GET['bulan'] : 0;
+        $data['bulan_filtered'] = $bulan;
+        $data['bulan_lalu_filtered'] = $bulan - 1;
+        $data['kabupaten'] = Kabupaten::all();
+        return view('pages.dashboard.index', $data);
     }
 
     public function profile()

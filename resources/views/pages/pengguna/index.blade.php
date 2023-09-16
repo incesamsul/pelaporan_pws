@@ -9,14 +9,14 @@
                         <h5 class="text-black mr-3">Data Pengguna</h5>
                         <div class="d-flex">
                             <input type="text" class="form-control card-form-header mr-3"
-                                placeholder="Cari Data Pengguna ..." id="cari-data-pengguna">
+                                placeholder="Cari Data Pengguna ..." id="searchbox">
 
                             <button type="button" class="btn btn-light float-right" data-toggle="modal" id="addUserBtn"
                                 data-target="#modalPengguna"><i class="fas fa-plus"></i></button>
                         </div>
                     </div>
                     <div class="card-body p-0">
-                        <table class="table table-striped table-hover table-user table-action-hover">
+                        <table class="table table-striped table-hover table-user table-action-hover" id="table-data">
                             <thead>
                                 <tr>
                                     <th width="5%" class="sorting" data-sorting_type="asc" data-column_name="id"
@@ -93,7 +93,7 @@
                             <label for="email">email</label>
                             <input type="text" class="form-control" name="email" id="email">
                         </div>
-                        <div class="form-group">
+                        <div class="form-group kabupaten">
                             <label for="kabupaten">kabupaten</label>
                             <select name="kabupaten" id="kabupaten" required class="form-control">
                                 <option value="">--pilhi kabupaten--</option>
@@ -125,91 +125,25 @@
     <script>
         $(document).ready(function() {
 
+            $('#tipe-pengguna').on('change', function() {
+                let data = $(this).val();
+                if (data == 'pengelola_provinsi') {
+                    $('.kabupaten').hide();
+                    $('#kabupaten').prop('required', false);
+                    $('#kabupaten').val(26);
+                }
+            })
 
             function clear_icon() {
                 $('#id_icon').html('');
                 $('#post_title_icon').html('');
             }
 
-            function fetch_data(page, sort_type, sort_by, query, filter) {
-                $.ajax({
-                    url: "/admin/fetch_data?page=" + page + "&sortby=" + sort_by + "&sorttype=" +
-                        sort_type + "&query=" + query + "&filter=" + filter,
-                    success: function(data) {
-                        console.log(data)
-                        // $('tbody').html('');
-                        $('tbody').html(data);
-                    },
-                    beforeSend: function() {
-                        showLoading('tbody', 150, true);
-                    },
-                    complete: function() {
-                        $('.loading').remove();
-                    },
-                    error: function(err) {
-                        console.log(err);
-                    }
-                })
-            }
 
-            $(document).on('keyup', '#cari-data-pengguna', function() {
-                var query = $('#cari-data-pengguna').val();
-                var column_name = $('#hidden_column_name').val();
-                var sort_type = $('#hidden_sort_type').val();
-                var page = $('#hidden_page').val();
-                var filter = $('#filter-data-pengguna').val();
-                fetch_data(page, sort_type, column_name, query, filter);
-            });
 
-            $(document).on('click', '.sorting', function() {
-                var column_name = $(this).data('column_name');
-                var order_type = $(this).data('sorting_type');
-                var reverse_order = '';
-                if (order_type == 'asc') {
-                    $(this).data('sorting_type', 'desc');
-                    reverse_order = 'desc';
-                    clear_icon();
-                    $('#' + column_name + '_icon').html(
-                        '<span class="glyphicon glyphicon-triangle-bottom"></span>');
-                }
-                if (order_type == 'desc') {
-                    $(this).data('sorting_type', 'asc');
-                    reverse_order = 'asc';
-                    clear_icon
-                    $('#' + column_name + '_icon').html(
-                        '<span class="glyphicon glyphicon-triangle-top"></span>');
-                }
-                $('#hidden_column_name').val(column_name);
-                $('#hidden_sort_type').val(reverse_order);
-                var page = $('#hidden_page').val();
-                var query = $('#cari-data-pengguna').val();
-                var filter = $('#filter-data-pengguna').val();
-                fetch_data(page, reverse_order, column_name, query, filter);
-            });
 
-            $(document).on('change', '#filter-data-pengguna', function() {
-                var query = $('#cari-data-pengguna').val();
-                var column_name = $('#hidden_column_name').val();
-                var sort_type = $('#hidden_sort_type').val();
-                var page = $('#hidden_page').val();
-                var filter = $(this).val();
-                fetch_data(page, sort_type, column_name, query, filter);
-            })
 
-            $(document).on('click', '.pagination a', function(event) {
-                event.preventDefault();
-                var page = $(this).attr('href').split('page=')[1];
-                $('#hidden_page').val(page);
-                var column_name = $('#hidden_column_name').val();
-                var sort_type = $('#hidden_sort_type').val();
 
-                var query = $('#cari-data-pengguna').val();
-
-                $('li').removeClass('active');
-                $(this).parent().addClass('active');
-                var filter = $('#filter-data-pengguna').val();
-                fetch_data(page, sort_type, column_name, query, filter);
-            });
 
 
             // TOMBOL EDIT USER
