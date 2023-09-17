@@ -41,12 +41,12 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                <div class="col-sm-6">
+                                {{-- <div class="col-sm-6">
                                     <form-group>
                                         <label for="periode">periode</label>
                                         <input type="text" class="form-control" name="periode" id="periode">
                                     </form-group>
-                                </div>
+                                </div> --}}
                                 <div class="col-sm-6">
                                     <form-group>
                                         <label for="kabupaten">kabupaten</label>
@@ -147,7 +147,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    {{ round((getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100, 2) }}
+
 
                                 </tr>
                             </tfoot>
