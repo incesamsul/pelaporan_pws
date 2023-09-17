@@ -158,20 +158,21 @@
         </div>
 
         <div class="row">
-
-            @foreach (getIndikator() as $indikator)
-                @if ($indikator != 'mtbs_berobat')
-                    <div class="col-sm-3">
-                        <div class="card">
-                            <div class="card-body text-center bg-primary">
-                                <h1 class="text-white">
-                                    <strong>{{ round((getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100, 2) }}</strong>
-                                </h1>
-                                <h4 class="text-white">{{ $indikator }}</h4>
+            @foreach ($sasaran as $row)
+                @foreach (getIndikator() as $indikator)
+                    @if ($indikator != 'mtbs_berobat')
+                        <div class="col-sm-3">
+                            <div class="card">
+                                <div class="card-body text-center bg-primary">
+                                    <h1 class="text-white">
+                                        <strong>{{ round((getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100, 2) }}</strong>
+                                    </h1>
+                                    <h4 class="text-white">{{ $indikator }}</h4>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                @endif
+                    @endif
+                @endforeach
             @endforeach
 
         </div>
