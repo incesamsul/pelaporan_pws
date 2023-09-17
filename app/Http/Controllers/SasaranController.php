@@ -75,7 +75,7 @@ class SasaranController extends Controller
             'bayi' => $request->bayi,
             'balita' => $request->balita,
             'bumil_resti' => $request->bumil_resti,
-            'bayi_res' => $request->bayi_res,
+            'bayi_resti' => $request->bayi_resti,
         ]);
 
         return redirect()->back()->with('message', 'data psw tersimpan');
