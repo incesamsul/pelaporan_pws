@@ -52,7 +52,7 @@ function getSasaranPerIndikator($indikator, $sasaran, $bulan)
 function getSumSasaranPerIndikator($indikator, $sasaran, $bulan)
 {
 
-    $query = Indikator::where('id_sasaran', $sasaran)->where('bulan', $bulan)->sum('k1');
+    $query = Indikator::where('bulan', $bulan)->sum($indikator);
     return $query;
 }
 

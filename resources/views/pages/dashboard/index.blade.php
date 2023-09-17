@@ -147,7 +147,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-
+                                    {{ round((getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100, 2) }}
 
                                 </tr>
                             </tfoot>
@@ -181,7 +181,7 @@
 @endsection
 @section('script')
     <script>
-        $('#lireportpws').addClass('active');
+        $('#liDashboard').addClass('active');
     </script>
     <script>
         document.getElementById('export-button').addEventListener('click', function() {

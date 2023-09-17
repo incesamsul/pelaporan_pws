@@ -136,8 +136,8 @@
                                             <td>{{ getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) + getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_lalu_filtered) }}
                                             </td>
                                             @if ($indikator != 'mtbs_berobat')
-                                                <td>{{ (getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100 }}
-                                                    %
+                                                <td>{{ round((getSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100, 2) }}
+
                                                 </td>
                                             @endif
                                         @endforeach
@@ -145,6 +145,32 @@
                                     </tr>
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td>#</td>
+                                    <td>Provinsi</td>
+                                    <td>{{ round(getSumSasaran('bumil')) }}</td>
+                                    <td>{{ round(getSumSasaran('bulin')) }}</td>
+                                    <td>{{ round(getSumSasaran('lahir_hidup')) }}</td>
+                                    <td>{{ round(getSumSasaran('bayi')) }}</td>
+                                    <td>{{ round(getSumSasaran('balita')) }}</td>
+                                    <td>{{ round(getSumSasaran('bumil_resti')) }}</td>
+                                    <td>{{ round(getSumSasaran('bayi_resti')) }}</td>
+                                    @foreach (getIndikator() as $indikator)
+                                        <td>{{ getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_lalu_filtered) }}
+                                        </td>
+                                        <td>{{ getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) }}
+                                        </td>
+                                        <td>{{ getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) + getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_lalu_filtered) }}
+                                        </td>
+                                        @if ($indikator != 'mtbs_berobat')
+                                            <td>{{ round((getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100, 2) }}
+
+                                            </td>
+                                        @endif
+                                    @endforeach
+                                </tr>
+                            </tfoot>
                         </table>
                     </div>
                 </div>
