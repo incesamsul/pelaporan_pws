@@ -13,47 +13,50 @@
                         <form action="">
                             <div class="row">
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
+                                    <?php
+                                    $tahun = [2018, 2019, 2020, 2021, 2022, 2023, 2024];
+                                    ?>
                                     <form-group>
                                         <label for="tahun">tahun</label>
                                         <select name="tahun" id="tahun" class="form-control">
                                             <option value="">--pilih tahun--</option>
-                                            <option>2018</option>
-                                            <option>2019</option>
-                                            <option>2020</option>
-                                            <option>2021</option>
-                                            <option>2022</option>
-                                            <option>2023</option>
-                                            <option>2024</option>
+                                            @foreach ($tahun as $t)
+                                                <option {{ $tahun_filter == $t ? 'selected' : '' }}
+                                                    value="{{ $t }}">
+                                                    {{ $t }}</option>
+                                            @endforeach
                                         </select>
                                     </form-group>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
                                     <form-group>
                                         <label for="bulan">bulan</label>
                                         <select name="bulan" id="bulan" class="form-control">
                                             <option value="">-- pilih bulan --</option>
                                             @foreach (getBulan() as $key => $bulan)
-                                                <option value="{{ $key + 1 }}">{{ $bulan }}</option>
+                                                <option {{ $bulan_filter == $key + 1 ? 'selected' : '' }}
+                                                    value="{{ $key + 1 }}">{{ $bulan }}</option>
                                             @endforeach
                                         </select>
                                     </form-group>
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                {{-- <div class="col-sm-6">
+                                {{-- <div class="col-sm-">
                                     <form-group>
                                         <label for="periode">periode</label>
                                         <input type="text" class="form-control" name="periode" id="periode">
                                     </form-group>
                                 </div> --}}
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
                                     <form-group>
                                         <label for="kabupaten">kabupaten</label>
                                         <select name="kabupaten" id="kabupaten" class="form-control">
                                             <option value="">-- pilih kabupaten --</option>
                                             @foreach ($kabupaten as $row)
-                                                <option value="{{ $row->id }}">{{ $row->nama }}</option>
+                                                <option {{ $kabupaten_filter == $row->id ? 'selected' : '' }}
+                                                    value="{{ $row->id }}">{{ $row->nama }}</option>
                                             @endforeach
                                         </select>
                                     </form-group>
@@ -62,8 +65,10 @@
                             <div class="row mt-3">
                                 <div class="col-sm-3">
                                     <div class="form-group">
-                                        <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i>
-                                            filter</button>
+                                        <button type="submit" class="btn btn-primary">
+                                            <i class="fas fa-filter"></i> filter</button>
+                                        <a href="{{ URL::to('/report_pws') }}" type="submit" class="btn btn-secondary">
+                                            <i class="fas fa-sync"></i> Reset</a>
                                     </div>
                                 </div>
                             </div>
@@ -164,8 +169,15 @@
                                         <td>{{ getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) + getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_lalu_filtered) }}
                                         </td>
                                         @if ($indikator != 'mtbs_berobat')
-                                            <td>{{ round((getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $row->bumil) * 100, 2) }}
-
+                                            @php
+                                                $bumil;
+                                                if ($row->bumil == 0) {
+                                                    $bumil = 1;
+                                                } else {
+                                                    $bumil = $row->bumil;
+                                                }
+                                            @endphp
+                                            <td>{{ round((getSumSasaranPerIndikator(spaceToUL($indikator), $row->id, $bulan_filtered) / $bumil) * 100, 2) }}
                                             </td>
                                         @endif
                                     @endforeach

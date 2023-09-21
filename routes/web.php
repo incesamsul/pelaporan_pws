@@ -52,8 +52,14 @@ Route::group(['middleware' => ['auth', 'ceklevel:Administrator,pengelola_provins
 Route::group(['middleware' => ['auth', 'ceklevel:pengelola_kabupaten']], function () {
     Route::get('/sasaran', [SasaranController::class, 'kabupaten']);
     Route::post('/sasaran', [SasaranController::class, 'store']);
+    Route::get('/sasaran/hapus/{id}', [SasaranController::class, 'delete']);
+    Route::get('/sasaran/edit/{id}', [SasaranController::class, 'kabupaten']);
+    Route::post('/sasaran/update/{id}', [SasaranController::class, 'update']);
     Route::get('/indikator', [SasaranController::class, 'indikator']);
     Route::post('/indikator', [SasaranController::class, 'storeIndikator']);
+    Route::get('/indikator/hapus/{id}', [SasaranController::class, 'deleteIndikator']);
+    Route::get('/indikator/edit/{id}', [SasaranController::class, 'indikator']);
+    Route::post('/indikator/update/{id}', [SasaranController::class, 'updateIndikator']);
 });
 
 

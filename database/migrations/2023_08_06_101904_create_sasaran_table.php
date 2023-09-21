@@ -16,6 +16,7 @@ class CreateSasaranTable extends Migration
         Schema::create('sasaran', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('id_kabupaten');
+            $table->year('tahun');
             $table->double('bumil');
             $table->double('bulin');
             $table->double('lahir_hidup');

@@ -36,6 +36,11 @@ function getIndikator()
     ];
 }
 
+function getMonthName($bulanNo)
+{
+    $bulan = ['januari', 'februari', 'maret', 'april', 'mei', 'juni', 'juli', 'agustus', 'september', 'oktober', 'november', 'desember'];
+    return $bulan[$bulanNo - 1];
+}
 function getBulan()
 {
 

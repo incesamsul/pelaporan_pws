@@ -13,7 +13,7 @@
                         <form action="">
                             <div class="row">
 
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
                                     <form-group>
                                         <label for="tahun">tahun</label>
                                         <select name="tahun" id="tahun" class="form-control">
@@ -28,7 +28,7 @@
                                         </select>
                                     </form-group>
                                 </div>
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
                                     <form-group>
                                         <label for="bulan">bulan</label>
                                         <select name="bulan" id="bulan" class="form-control">
@@ -41,13 +41,13 @@
                                 </div>
                             </div>
                             <div class="row mt-3">
-                                {{-- <div class="col-sm-6">
+                                {{-- <div class="col-sm-3">
                                     <form-group>
                                         <label for="periode">periode</label>
                                         <input type="text" class="form-control" name="periode" id="periode">
                                     </form-group>
                                 </div> --}}
-                                <div class="col-sm-6">
+                                <div class="col-sm-3">
                                     <form-group>
                                         <label for="kabupaten">kabupaten</label>
                                         <select name="kabupaten" id="kabupaten" class="form-control">
