@@ -92,6 +92,7 @@
 
                                 <tr align="center">
                                     <th rowspan="2  ">no</th>
+                                    <th rowspan="2  ">Verifikasi</th>
                                     <th rowspan="2  ">kabupaten</th>
                                     <th colspan="7">sasaran</th>
                                     @foreach (getIndikator() as $indikator)
@@ -124,6 +125,16 @@
                                 @foreach ($sasaran as $row)
                                     <tr>
                                         <td>{{ $loop->iteration }}</td>
+                                        <td>
+                                            @if ($row->verifikasi == 0)
+                                                <a onclick="return confirm('yakin ?')" class="btn btn-primary"
+                                                    href="{{ URL::to('/report_pws/verifikasi/' . $row->id) }}">
+                                                    Verifikasi
+                                                </a>
+                                            @else
+                                                <span class="badge badge-success">Verified</span>
+                                            @endif
+                                        </td>
                                         <td>{{ $row->kabupaten->nama }}</td>
                                         <td>{{ $row->bumil }}</td>
                                         <td>{{ $row->bulin }}</td>
@@ -152,6 +163,7 @@
                             </tbody>
                             <tfoot>
                                 <tr>
+                                    <td>#</td>
                                     <td>#</td>
                                     <td>Provinsi</td>
                                     <td>{{ round(getSumSasaran('bumil')) }}</td>

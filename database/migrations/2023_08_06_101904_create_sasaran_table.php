@@ -24,6 +24,7 @@ class CreateSasaranTable extends Migration
             $table->double('balita');
             $table->double('bumil_resti');
             $table->double('bayi_resti');
+            $table->integer('verifikasi');
             $table->timestamps();
             $table->foreign('id_kabupaten')->references('id')->on('kabupaten')->onDelete('cascade');
         });

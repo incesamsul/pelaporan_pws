@@ -123,6 +123,16 @@ class SasaranController extends Controller
         }
     }
 
+    public function verifikasi($id)
+    {
+        Sasaran::where('id', $id)->update([
+            'verifikasi' => 1
+        ]);
+
+
+        return redirect()->back()->with('message', 'berhasil');
+    }
+
     public function store(Request $request)
     {
         Sasaran::create([

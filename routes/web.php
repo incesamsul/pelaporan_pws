@@ -66,6 +66,7 @@ Route::group(['middleware' => ['auth', 'ceklevel:pengelola_kabupaten']], functio
 // PROVINSI ROUTE
 Route::group(['middleware' => ['auth', 'ceklevel:pengelola_provinsi,pimpinan']], function () {
     Route::get('/report_pws', [SasaranController::class, 'report']);
+    Route::get('/report_pws/verifikasi/{id}', [SasaranController::class, 'verifikasi']);
 });
 
 
