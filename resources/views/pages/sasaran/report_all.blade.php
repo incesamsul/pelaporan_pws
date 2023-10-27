@@ -91,8 +91,11 @@
                             <thead>
 
                                 <tr align="center">
+                                    @if (auth()->user()->role != 'pimpinan')
+                                        <th rowspan="2  ">#</th>
+                                    @endif
                                     <th rowspan="2  ">no</th>
-                                    <th rowspan="2  ">Verifikasi</th>
+
                                     <th rowspan="2  ">kabupaten</th>
                                     <th colspan="7">sasaran</th>
                                     @foreach (getIndikator() as $indikator)
@@ -124,17 +127,23 @@
                             <tbody>
                                 @foreach ($sasaran as $row)
                                     <tr>
+
+                                        @if (auth()->user()->role != 'pimpinan')
+                                            <td>
+                                                @if ($row->verifikasi == 0)
+                                                    <a onclick="return confirm('yakin ?')"
+                                                        class="d-flex align-items-center justify-content-center"
+                                                        href="{{ URL::to('/report_pws/verifikasi/' . $row->id) }}">
+                                                        <input type="checkbox">
+                                                        <button
+                                                            style="position: absolute; border:0; background:transparent; height: 10px"></button>
+                                                    </a>
+                                                @else
+                                                    <input type="checkbox" checked>
+                                                @endif
+                                            </td>
+                                        @endif
                                         <td>{{ $loop->iteration }}</td>
-                                        <td>
-                                            @if ($row->verifikasi == 0)
-                                                <a onclick="return confirm('yakin ?')" class="btn btn-primary"
-                                                    href="{{ URL::to('/report_pws/verifikasi/' . $row->id) }}">
-                                                    Verifikasi
-                                                </a>
-                                            @else
-                                                <span class="badge badge-success">Verified</span>
-                                            @endif
-                                        </td>
                                         <td>{{ $row->kabupaten->nama }}</td>
                                         <td>{{ $row->bumil }}</td>
                                         <td>{{ $row->bulin }}</td>

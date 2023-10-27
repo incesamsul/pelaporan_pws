@@ -39,6 +39,9 @@
                                         </select>
                                     </form-group>
                                 </div>
+                                <div class="col-sm-3 pl-5 ml-5">
+                                    <img src="{{ asset('img/jpg/dinkes.png') }}" alt="">
+                                </div>
                             </div>
                             <div class="row mt-3">
                                 {{-- <div class="col-sm-3">
@@ -67,6 +70,7 @@
                                     </div>
                                 </div>
                             </div>
+
                         </form>
                     </div>
                 </div>

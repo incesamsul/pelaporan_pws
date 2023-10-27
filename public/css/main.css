@@ -25,8 +25,9 @@ h6 {
     color: #191D21 !important;
 }
 
-.navbar-bg {
-    background-color: #191D21 !important;
+.content-wrapper {
+    background: url('../img/jpg/office.jpg');
+    background-size: cover;
 }
 
 textarea {

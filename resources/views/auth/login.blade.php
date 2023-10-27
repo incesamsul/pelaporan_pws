@@ -21,7 +21,7 @@
 
 <style>
     body {
-        background: url('img/png/white.png') !important;
+        background: url('img/jpg/office.jpg') !important;
         background-repeat: no-repeat !important;
         background-size: cover !important;
         background-attachment: fixed !important;

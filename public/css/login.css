@@ -2,6 +2,7 @@
 
 body {
     font-family: 'Nunito' !important;
+    background-color: red !important;
 }
 
 
@@ -38,7 +39,7 @@ body {
 }
 
 .main-wrapper {
-    background: url(../img/pattern/bg4png.png) !important;
+    background: url(../img/jpg/office.jpg) !important;
     background-repeat: no-repeat !important;
     /* background-position: 100px !important; */
     background-size: cover !important;
